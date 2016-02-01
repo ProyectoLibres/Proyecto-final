@@ -9,4 +9,19 @@
     
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>clienteBean</managed-bean-name>
+        <managed-bean-class>controlador.ClienteBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>resultadosBean</managed-bean-name>
+        <managed-bean-class>controlador.ResultadosBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>formaDePagoBean</managed-bean-name>
+        <managed-bean-class>controlador.FormaDePagoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
