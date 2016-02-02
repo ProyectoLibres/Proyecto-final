@@ -39,8 +39,13 @@ public class ResultadosBean {
 
         nombre = "";
         registroActivo = "";
+        return null;    
+}
+    public String modificar(){
         return null;
         
-    
-}
+    }
+    public String eliminar(){
+        return null;
+    }
 }

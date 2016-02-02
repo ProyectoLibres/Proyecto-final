@@ -4,7 +4,9 @@
  */
 package controlador;
 
-import java.util.ArrayList;
+import entidades.Cliente;
+import javax.ejb.EJB;
+import servicios.ClienteFacade;
 
 /**
  *
@@ -15,12 +17,18 @@ public class ClienteBean {
     private String nombre;
     private String apellido;
     private String cedula;
-    private int telefono;
-    private int telf_ref1;
-    private int telf_ref2;
+    private String codCliente;
+    private String telefono;
+    private String telf_ref1;
+    private String telf_ref2;
     private String direccion;
     private String registroActivo;
+    
+    private Cliente cliente;
 
+    @EJB
+    ClienteFacade clienteFacade;
+    
     public String getNombre() {
         return nombre;
     }
@@ -45,27 +53,27 @@ public class ClienteBean {
         this.cedula = cedula;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public int getTelf_ref1() {
+    public String getTelf_ref1() {
         return telf_ref1;
     }
 
-    public void setTelf_ref1(int telf_ref1) {
+    public void setTelf_ref1(String telf_ref1) {
         this.telf_ref1 = telf_ref1;
     }
 
-    public int getTelf_ref2() {
+    public String getTelf_ref2() {
         return telf_ref2;
     }
 
-    public void setTelf_ref2(int telf_ref2) {
+    public void setTelf_ref2(String telf_ref2) {
         this.telf_ref2 = telf_ref2;
     }
 
@@ -80,23 +88,78 @@ public class ClienteBean {
     public String getRegistroActivo() {
         return registroActivo;
     }
+    
 
     public void setRegistroActivo(String registroActivo) {
         this.registroActivo = registroActivo;
     }
 
+    public String getCodCliente() {
+        return codCliente;
+    }
+
+    public void setCodCliente(String codCliente) {
+        this.codCliente = codCliente;
+    }
+
+    
     public ClienteBean() {
     }
 
-    public String mostrarNombre() {
-        return this.nombre;
+    public String guardar() {
+        cliente = new Cliente();
+        
+        cliente.setCedulaRuc(new Integer(cedula));
+        cliente.setCodCliente(new Integer(codCliente));
+        cliente.setTelefono(new Integer(telefono));
+        cliente.setDireccion(direccion);
+        cliente.setTelfRef1(new Integer(telf_ref1));
+        cliente.setTelfRef2(new Integer(telf_ref2));
+        cliente.setRegistroactivocliente(registroActivo);
+        cliente.setIdCliente(new Integer(cedula));
+        clienteFacade.create(cliente);        
+        limpiar();
+        return  null;   
     }
 
     public String limpiar() {
-
+        
         nombre = "";
         apellido = "";
         cedula = "";
+        direccion = "";
+        telefono = "";
+        telf_ref1= "";
+        telf_ref2 = "";
+        codCliente = "";
+        registroActivo = "";
+        return null;
+    }
+    
+    public String modificar(){
+        
+        cliente = clienteFacade.find(new Integer(cedula));
+        
+        cliente.setCedulaRuc(new Integer(cedula));
+        cliente.setCodCliente(new Integer(codCliente));
+        cliente.setTelefono(new Integer(telefono));
+        cliente.setDireccion(direccion);
+        cliente.setTelfRef1(new Integer(telf_ref1));
+        cliente.setTelfRef2(new Integer(telf_ref2));
+        cliente.setRegistroactivocliente(registroActivo);
+        cliente.setIdCliente(new Integer(cedula));
+        clienteFacade.edit(cliente);
+        
+        limpiar();
+        
+        return null;
+        
+    }
+    public String eliminar(String cedula){
+        
+        cliente = clienteFacade.find(new Integer(cedula));
+        clienteFacade.remove(cliente);
+        limpiar();
         return null;
     }
 }

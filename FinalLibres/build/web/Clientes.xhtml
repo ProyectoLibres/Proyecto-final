@@ -15,20 +15,6 @@
         <h:form class="form-horizontal"> 
            
             <div class="form-group">
-                <label type="text" class="control-label col-xs-3" for="nombre">Nombre:</label> 
-                <div class="col-xs-9">
-                    <input id="nombre" class="form-control" placeholder="Nombre" jsf:value="#{clienteBean.nombre}">
-                    </input>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-xs-3">Apellido:</label>
-                <div class="col-xs-9">
-                    <input type="text" class="form-control" placeholder="Apellido" jsf:value="#{clienteBean.apellido}">
-                    </input>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="control-label col-xs-3">Cédula o RUC:</label>
                 <div class="col-xs-9">
                     <input type="text" class="form-control" placeholder="Cédula o RUC" jsf:value="#{clienteBean.cedula}">
@@ -38,7 +24,7 @@
             <div class="form-group">
                 <label class="control-label col-xs-3">Código del Cliente:</label>
                 <div class="col-xs-9">
-                    <input type="text" class="form-control" placeholder="CódigoCliente">
+                    <input type="text" class="form-control" placeholder="CódigoCliente" jsf:value="#{clienteBean.codCliente}">
                     </input>
                 </div>
             </div>
@@ -80,13 +66,16 @@
             <br>
             </br>
             <div class="col-xs-offset-3 col-xs-9">
-                <button  type="button" class="btn btn-primary" value="Ingresar" >Ingresar
+                <button  class="btn btn-primary" jsf:action="#{clienteBean.guardar()}">Ingresar
                 </button >  
                 <button class="btn btn-default" jsf:action="#{clienteBean.limpiar()}">Limpiar
                 </button >
+                <button class="btn btn-default" jsf:action="#{clienteBean.modificar()}">Modificar
+                </button >
+                <button class="btn btn-default" jsf:action="#{clienteBean.eliminar(clienteBean.cedula)}">Eliminar
+                </button >
             </div> 
         </h:form>
-        
         <script src="recursos/jquery-2.2.0.js"></script>
         <script src="recursos/bootstrap.js"></script>
     </h:body>

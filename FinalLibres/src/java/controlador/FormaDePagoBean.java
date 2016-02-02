@@ -39,8 +39,13 @@ public class FormaDePagoBean {
 
         nombre = "";
         registroActivo = "";
-        return null;
-        
-    
+        return null;   
 }
+     public String modificar(){
+         return null;
+        
+    }
+    public String eliminar(){
+        return null;
+    }
 }
